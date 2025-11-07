@@ -1,0 +1,99 @@
+.banner{
+    padding: 50px;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+} 
+
+.banner .slider{
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1200px);
+    animation: autoRun 20s linear infinite;
+    z-index: 2;
+    padding: 2px;
+}
+/* the values for perspective depends on the number of images you will use
+ on the style represents the number of images you are using times 100
+ in this case line 17, 27 and 29 */
+@keyframes autoRun{
+    from{
+        transform: perspective(1200px) rotateX(-10deg) rotateY(0deg);
+    } to{
+        transform: perspective(1200px) rotateX(-10deg) rotateY(360deg);
+    }
+}
+
+.banner .slider .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: 
+        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg ))
+        translateZ(550px);
+}
+
+.banner .slider .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner .content{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    height: max-content;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner .content h1{
+    font-family: 'Times New Roman';
+    font-size: 6em;
+    line-height: 1em;
+    
+    color: blueviolet;
+    position: relative;
+}
+
+.banner .content h1::after{
+    position: absolute;
+    inset: 0 0 0 0;
+    content: attr(data-content);
+    z-index: 1;
+    -webkit-text-stroke: 2px white;
+    color: transparent;
+}
+
+.banner .content .author{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: right;
+    max-width: 200px;
+}
+
+.banner .content h2{
+    font-size: 2em;
+}
+
+.banner .content .model{
+    background-image: url(images/one-piece-luffy-gear-5-3840x2160-12547.jpeg);
+    width: 100%;
+    height: 75vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-size: auto 130%;
+    background-repeat: no-repeat;
+    background-position: top center;
+}
